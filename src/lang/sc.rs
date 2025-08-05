@@ -147,8 +147,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("OS Password", "Crae sistema operativu"),
         ("install_tip", "Pro neghe de su Controllu Contu Utente (UAC), RustDesk diat pòdere non funtzionare comente si tocat comente iscrivania remota.\nPro evitare custu problema, incarca in su butone inoghe in suta pro installare RustDesk a livellu de sistema."),
         ("Click to upgrade", "Atualiza"),
-        ("Click to download", "Iscàrriga"),
-        ("Click to update", "Annoa"),
         ("Configure", "Cunfigura"),
         ("config_acc", "Pro controllare s'iscrivania dae foras, depes frunire a RustDesk su permissu 'Atzessibilidade'."),
         ("config_screen", "Pro controllare s'iscrivania dae foras, depes frunire a RustDesk su permissu 'Registratzione ischermu'."),
@@ -461,7 +459,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("empty_favorite_tip", "Galu peruna connessione?\nBusca calicunu cun chie ti collegare e annanghe·lu a sos preferidos!"),
         ("empty_lan_tip", "Paret a beru chi non siat istada atzapada peruna connessione."),
         ("empty_address_book_tip", "Paret chi pro como in sa rubrica non b'apat connessiones."),
-        ("eg: admin", "es: admin"),
         ("Empty Username", "Nùmene utente bòidu"),
         ("Empty Password", "Crae bòida"),
         ("Me", "Deo"),
@@ -710,5 +707,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("The user is not an administrator.", ""),
         ("Failed to check if the user is an administrator.", ""),
         ("Supported only in the installed version.", ""),
+        ("elevation_username_tip", ""),
     ].iter().cloned().collect();
 }

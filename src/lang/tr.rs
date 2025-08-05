@@ -147,8 +147,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("OS Password", "İşletim Sistemi Şifresi"),
         ("install_tip", "Kullanıcı Hesabı Denetimi nedeniyle, RustDesk bir uzak masaüstü olarak düzgün çalışmayabilir. Bu sorunu önlemek için, RustDesk'i sistem seviyesinde kurmak için aşağıdaki butona tıklayın."),
         ("Click to upgrade", "Yükseltmek için tıklayınız"),
-        ("Click to download", "İndirmek için tıklayınız"),
-        ("Click to update", "Güncellemek için tıklayınız"),
         ("Configure", "Ayarla"),
         ("config_acc", "Masaüstünüzü dışarıdan kontrol etmek için RustDesk'e \"Erişilebilirlik\""),
         ("config_screen", "Masaüstünüzü dışarıdan kontrol etmek için RustDesk'e \"Ekran Kaydı\" iznini vermeniz gerekir."),
@@ -461,7 +459,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("empty_favorite_tip", "Henüz favori cihazınız yok mu?\nBağlanacak ve favorilere eklemek için birini bulalım!"),
         ("empty_lan_tip", "Hayır, henüz hiçbir cihaz bulamadık gibi görünüyor."),
         ("empty_address_book_tip", "Üzgünüm, şu anda adres defterinizde kayıtlı cihaz yok gibi görünüyor."),
-        ("eg: admin", "örn: admin"),
         ("Empty Username", "Boş Kullanıcı Adı"),
         ("Empty Password", "Boş Parola"),
         ("Me", "Ben"),
@@ -710,5 +707,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("The user is not an administrator.", ""),
         ("Failed to check if the user is an administrator.", ""),
         ("Supported only in the installed version.", ""),
+        ("elevation_username_tip", ""),
     ].iter().cloned().collect();
 }

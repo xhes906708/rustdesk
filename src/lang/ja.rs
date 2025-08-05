@@ -147,8 +147,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("OS Password", "OSのパスワード"),
         ("install_tip", "UACの影響により、RustDeskがリモートコンピューター上で正常に動作しない場合があります。UACを回避するには、下のボタンをクリックしてシステムにRustDeskをインストールしてください。"),
         ("Click to upgrade", "アップグレード"),
-        ("Click to download", "ダウンロード"),
-        ("Click to update", "アップデート"),
         ("Configure", "設定"),
         ("config_acc", "リモートからあなたのコンピューターを操作するには、RustDeskに「アクセシビリティ」権限を与える必要があります。"),
         ("config_screen", "リモートからあなたのコンピューターにアクセスするには、RustDeskに「画面録画」の権限を与える必要があります。"),
@@ -461,7 +459,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("empty_favorite_tip", "お気に入りのリモートコンピュータがないようですね？あなたの接続先を登録しましょう！"),
         ("empty_lan_tip", "あらら、まだ近くのコンピューターは発見できていないようです。"),
         ("empty_address_book_tip", "驚くべきことに、あなたのアドレス帳には現在コンピューターが登録されていません。"),
-        ("eg: admin", "例: 管理者"),
         ("Empty Username", "空のユーザー名"),
         ("Empty Password", "空のパスワード"),
         ("Me", "あなた"),
@@ -710,5 +707,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("The user is not an administrator.", ""),
         ("Failed to check if the user is an administrator.", ""),
         ("Supported only in the installed version.", ""),
+        ("elevation_username_tip", ""),
     ].iter().cloned().collect();
 }

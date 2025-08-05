@@ -147,8 +147,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("OS Password", ""),
         ("install_tip", ""),
         ("Click to upgrade", ""),
-        ("Click to download", ""),
-        ("Click to update", ""),
         ("Configure", ""),
         ("config_acc", ""),
         ("config_screen", ""),
@@ -461,7 +459,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("empty_favorite_tip", ""),
         ("empty_lan_tip", ""),
         ("empty_address_book_tip", ""),
-        ("eg: admin", ""),
         ("Empty Username", ""),
         ("Empty Password", ""),
         ("Me", ""),
@@ -710,5 +707,6 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("The user is not an administrator.", ""),
         ("Failed to check if the user is an administrator.", ""),
         ("Supported only in the installed version.", ""),
+        ("elevation_username_tip", ""),
     ].iter().cloned().collect();
 }

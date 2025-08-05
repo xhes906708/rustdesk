@@ -447,7 +447,8 @@ impl Client {
                             let addr = AddrMangle::decode(&rr.socket_addr_v6);
                             if addr.port() > 0 {
                                 if s.connect(addr).await.is_ok() {
-                                    connect_futures.push(udp_nat_connect(s, "IPv6").boxed());
+                                    connect_futures
+                                        .push(udp_nat_connect(s, "IPv6", CONNECT_TIMEOUT).boxed());
                                 }
                             }
                         }
@@ -589,10 +590,10 @@ impl Client {
             .boxed(),
         );
         if let Some(udp_socket_nat) = udp_socket_nat {
-            connect_futures.push(udp_nat_connect(udp_socket_nat, "UDP").boxed());
+            connect_futures.push(udp_nat_connect(udp_socket_nat, "UDP", connect_timeout).boxed());
         }
         if let Some(udp_socket_v6) = udp_socket_v6 {
-            connect_futures.push(udp_nat_connect(udp_socket_v6, "IPv6").boxed());
+            connect_futures.push(udp_nat_connect(udp_socket_v6, "IPv6", connect_timeout).boxed());
         }
         // Run all connection attempts concurrently, return the first successful one
         let (mut conn, kcp, mut typ) = match select_ok(connect_futures).await {
@@ -2551,7 +2552,7 @@ impl LoginConfigHandler {
             }),
             ConnType::TERMINAL => {
                 let mut terminal = Terminal::new();
-                terminal.service_id = self.get_option("terminal-service-id");
+                terminal.service_id = self.get_option(self.get_key_terminal_service_id());
                 lr.set_terminal(terminal);
             }
             _ => {}
@@ -2601,6 +2602,14 @@ impl LoginConfigHandler {
 
     pub fn get_id(&self) -> &str {
         &self.id
+    }
+
+    pub fn get_key_terminal_service_id(&self) -> &'static str {
+        if self.is_terminal_admin {
+            "terminal-admin-service-id"
+        } else {
+            "terminal-service-id"
+        }
     }
 }
 
@@ -3685,7 +3694,7 @@ pub fn check_if_retry(msgtype: &str, title: &str, text: &str, retry_for_relay: b
         && title == "Connection Error"
         && ((text.contains("10054") || text.contains("104")) && retry_for_relay
             || (!text.to_lowercase().contains("offline")
-                && !text.to_lowercase().contains("exist")
+                && !text.to_lowercase().contains("not exist")
                 && !text.to_lowercase().contains("handshake")
                 && !text.to_lowercase().contains("failed")
                 && !text.to_lowercase().contains("resolve")
@@ -4001,6 +4010,7 @@ async fn test_udp_uat(
 async fn udp_nat_connect(
     socket: Arc<UdpSocket>,
     typ: &'static str,
+    ms_timeout: u64,
 ) -> ResultType<(Stream, Option<KcpStream>, &'static str)> {
     crate::punch_udp(socket.clone(), false)
         .await
@@ -4008,7 +4018,7 @@ async fn udp_nat_connect(
             log::debug!("{err}");
             anyhow!(err)
         })?;
-    let res = KcpStream::connect(socket, Duration::from_secs(CONNECT_TIMEOUT as _))
+    let res = KcpStream::connect(socket, Duration::from_millis(ms_timeout))
         .await
         .map_err(|err| {
             log::debug!("Failed to connect KCP stream: {}", err);
